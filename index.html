@@ -1,60 +1,32 @@
 <!doctype html>
 <html lang="ms">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>TONY99 Lucky Draw</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>TONY99 Lucky Draw</title><script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    :root{--gold:#ffd34e;--gold2:#ff9e20;--purple:#6f2ad4;--ink:#0b0614}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;color:#fff;font-family:Arial,sans-serif;background:radial-gradient(circle at 50% -10%,#562075 0,#1c0b31 38%,#08040f 85%);overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;opacity:.18;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:27px 27px}
-    .wrap{position:relative;z-index:1;width:min(100%,520px);margin:auto;padding:24px 18px 34px;text-align:center}
-    .logo{width:min(74%,330px);height:auto;filter:drop-shadow(0 5px 16px #ffbd28aa);margin:2px auto 8px}
-    .tag{margin:0 0 18px;color:#ffe59a;font-weight:700;letter-spacing:1px}
-    .card{padding:22px 16px 20px;border:1px solid #ffffff24;border-radius:28px;background:#ffffff0d;box-shadow:0 20px 60px #0009;backdrop-filter:blur(8px)}
-    .wheelbox{position:relative;width:min(82vw,370px);aspect-ratio:1;margin:12px auto 22px}
-    .pointer{position:absolute;z-index:3;left:50%;top:-9px;transform:translateX(-50%);width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:38px solid var(--gold);filter:drop-shadow(0 3px 4px #000)}
-    canvas{width:100%;height:100%;display:block;border-radius:50%;border:9px solid #f7c33b;box-shadow:0 0 0 5px #8b4a06,0 0 30px #f4ae3270}
-    .hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#fff0a0,#ffab18);border:7px solid #fff2b0;color:#4a1900;font-weight:900;box-shadow:0 5px 16px #0008}
-    button,a.action{width:100%;border:0;border-radius:14px;padding:15px 18px;font-weight:900;font-size:17px;text-decoration:none;display:block;cursor:pointer}
-    #spin{color:#341000;background:linear-gradient(135deg,#fff18a,#ffab1d);box-shadow:0 8px 25px #f3ab3154}
-    #spin:disabled{opacity:.55;cursor:not-allowed}
-    .result{display:none;margin-top:18px;padding:18px;border-radius:18px;background:#ffffff12;border:1px solid #ffd34e66}
-    .result h2{margin:0 0 8px;color:var(--gold);font-size:27px}.result p{margin:0 0 15px;color:#eee;line-height:1.45}
-    #returnBot{color:#fff;background:linear-gradient(135deg,#7a36e8,#b03dc5)}
-    .note{font-size:12px;color:#bdb0cb;margin:15px 4px 0;line-height:1.4}
+    :root{--gold:#ffd86a;--panel:#15120c;--muted:#b9ac8d}*{box-sizing:border-box}html{background:#050505}body{margin:0;min-height:100vh;color:#fff;font-family:Arial,sans-serif;background:radial-gradient(circle at 50% 0,#46300f 0,#100d08 32%,#050505 78%)}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:radial-gradient(#ffd76a 1px,transparent 1px);background-size:26px 26px}.wrap{position:relative;z-index:1;width:min(100%,460px);margin:auto;padding:14px 13px 32px}header{text-align:center}
+    .logo{display:block;width:min(59%,260px);height:auto;margin:0 auto 1px;filter:drop-shadow(0 4px 14px #ffc73c66)}.tag{margin:0 0 12px;color:#f4ca65;font-size:12px;font-weight:900;letter-spacing:2px}.panel{border:1px solid #e4b94d45;background:linear-gradient(145deg,#1b1710ee,#0c0b09f2);box-shadow:0 18px 50px #000b;border-radius:20px}
+    .player{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;margin-bottom:10px}.field{min-width:0;padding:9px 10px;border-radius:12px;background:#ffffff08;border:1px solid #fff1b51d}.label{display:block;color:#9e9072;font-size:10px;font-weight:700;margin-bottom:4px;text-transform:uppercase}.value{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#ffe09a;font-weight:800;font-size:13px}
+    .game{padding:14px 12px 13px;text-align:center}.wheelbox{position:relative;width:min(77vw,310px);aspect-ratio:1;margin:3px auto 15px}.pointer{position:absolute;z-index:3;left:50%;top:-7px;transform:translateX(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:32px solid #ffe072;filter:drop-shadow(0 3px 3px #000)}canvas{width:100%;height:100%;display:block;border-radius:50%;border:8px solid #dba822;box-shadow:0 0 0 4px #6b4305,0 0 25px #e9af315c}.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#fff1a1,#d79812);border:5px solid #ffdf7c;color:#281800;font-size:12px;font-weight:900;box-shadow:0 5px 14px #000a}
+    button,a.action{display:block;width:100%;border:0;border-radius:13px;padding:14px 16px;font-weight:900;font-size:16px;text-decoration:none;cursor:pointer}#spin{color:#2c1900;background:linear-gradient(135deg,#fff0a1,#f1aa1f 60%,#ffe27c);box-shadow:0 7px 22px #e6a92838}#spin:disabled{opacity:.55}.result{display:none;margin-top:13px;padding:15px;border-radius:15px;background:linear-gradient(135deg,#31240e,#17120a);border:1px solid #ffd86a6b}.result h2{margin:0 0 7px;color:#ffdb6e;font-size:23px}.result p{margin:0 0 13px;color:#d8cfbb;font-size:13px}#returnBot{color:#271700;background:linear-gradient(135deg,#ffe98c,#d59b1c)}
+    .history{margin-top:10px;padding:13px}.history h3{margin:0 0 9px;color:#f5cb67;font-size:14px}.empty,.record{margin:0;padding:11px;border-radius:11px;background:#ffffff07;color:#bdb39e;font-size:12px}.record{display:none;color:#f4ead3}.record strong{color:#ffdc70}.record span{float:right;color:#a99c83}.note{font-size:10px;color:#877c67;text-align:center;margin:10px 5px 0;line-height:1.35}.burst{position:fixed;z-index:9;width:9px;height:15px;top:-20px;pointer-events:none;animation:fall 2.4s linear forwards}@keyframes fall{to{transform:translate(var(--x),110vh) rotate(780deg);opacity:.2}}@media(max-width:360px){.wrap{padding:9px}.logo{width:52%}.wheelbox{width:72vw}.game{padding:11px 9px}.player{gap:6px}.value{font-size:12px}}
   </style>
 </head>
-<body>
-  <main class="wrap">
-    <img class="logo" src="tony99-logo.png" alt="TONY99">
-    <p class="tag">LUCKY DRAW • SPIN & WIN</p>
-    <section class="card">
-      <div class="wheelbox">
-        <div class="pointer"></div>
-        <canvas id="wheel" width="740" height="740"></canvas>
-        <div class="hub">TONY99</div>
-      </div>
-      <button id="spin">🎁 SPIN NOW</button>
-      <div class="result" id="result">
-        <h2 id="resultTitle"></h2>
-        <p>Tekan butang di bawah untuk kembali ke Telegram Bot.</p>
-        <a class="action" id="returnBot" href="https://t.me/TONY99LuckyDrawBot">✅ RETURN TO BOT</a>
-      </div>
-      <p class="note">Satu Telegram ID dan satu nombor telefon hanya dibenarkan bermain sekali.</p>
-    </section>
-  </main>
+<body><main class="wrap"><header><img class="logo" src="tony99-logo.png" alt="TONY99"><p class="tag">LUCKY DRAW • SPIN & WIN</p></header>
+  <section class="panel player"><div class="field"><span class="label">Telegram Username</span><span class="value" id="username">@Te***er</span></div><div class="field"><span class="label">Nombor Telefon</span><span class="value" id="phone">012****789</span></div></section>
+  <section class="panel game"><div class="wheelbox"><div class="pointer"></div><canvas id="wheel" width="700" height="700"></canvas><div class="hub">TONY99</div></div><button id="spin">🎁 SPIN NOW</button><div class="result" id="result"><h2 id="resultTitle"></h2><p>Keputusan anda telah direkodkan. Kembali ke Telegram Bot untuk meneruskan.</p><a class="action" id="returnBot" href="https://t.me/TONY99LuckyDrawBot">✅ RETURN TO BOT</a></div></section>
+  <section class="panel history"><h3>🏆 REKOD KEMENANGAN</h3><p class="empty" id="empty">Belum ada rekod kemenangan.</p><p class="record" id="record"><strong id="recordPoints"></strong><span id="recordTime"></span></p></section><p class="note">Satu Telegram ID dan satu nombor telefon hanya dibenarkan bermain sekali.</p></main>
   <script>
-    const prizes=[1,2,3,5,8,10], colors=['#6929c4','#ed3c73','#ee8e2c','#3d55c7','#b82eaa','#d7a41d'];
-    const canvas=document.getElementById('wheel'),ctx=canvas.getContext('2d'),spin=document.getElementById('spin');
-    const result=document.getElementById('result'),resultTitle=document.getElementById('resultTitle');
-    const tg=window.Telegram?.WebApp; if(tg){tg.ready();tg.expand();}
-    let rotation=0,spinning=false,won=null;
-    function draw(){const r=canvas.width/2,slice=Math.PI*2/prizes.length;ctx.clearRect(0,0,canvas.width,canvas.height);ctx.save();ctx.translate(r,r);ctx.rotate(rotation);for(let i=0;i<prizes.length;i++){ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,r-10,i*slice,(i+1)*slice);ctx.closePath();ctx.fillStyle=colors[i];ctx.fill();ctx.strokeStyle='#ffffff55';ctx.lineWidth=4;ctx.stroke();ctx.save();ctx.rotate((i+.5)*slice);ctx.translate(r*.60,0);ctx.rotate(Math.PI/2);ctx.fillStyle='#fff';ctx.font='900 43px Arial';ctx.textAlign='center';ctx.shadowColor='#000';ctx.shadowBlur=6;ctx.fillText(prizes[i]+' PT',0,13);ctx.restore()}ctx.restore()}
-    draw();
-    spin.addEventListener('click',()=>{if(spinning||localStorage.getItem('tony99_draw_done'))return;spinning=true;spin.disabled=true;won=Math.floor(Math.random()*prizes.length);const slice=Math.PI*2/prizes.length,target=-(won+.5)*slice-Math.PI/2,from=rotation,to=target+Math.PI*2*(7+Math.floor(Math.random()*3));const start=performance.now(),duration=4500;function animate(now){const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,4);rotation=from+(to-from)*ease;draw();if(p<1)requestAnimationFrame(animate);else{spinning=false;const points=prizes[won];localStorage.setItem('tony99_draw_done',String(points));resultTitle.textContent='🎉 Anda Menang '+points+' Points!';result.style.display='block';spin.style.display='none';if(tg){try{tg.sendData(JSON.stringify({type:'lucky_draw_result',points}));}catch(e){}}}}requestAnimationFrame(animate)});
-    const previous=localStorage.getItem('tony99_draw_done');if(previous){spin.style.display='none';resultTitle.textContent='🎉 Anda Menang '+previous+' Points!';result.style.display='block'}
-  </script>
-</body>
-</html>
+    const prizes=[1,2,3,5,8,10],colors=['#171717','#ba8518','#28231a','#d1a12f','#111','#8f6413'],canvas=document.getElementById('wheel'),ctx=canvas.getContext('2d'),spin=document.getElementById('spin'),result=document.getElementById('result'),resultTitle=document.getElementById('resultTitle');
+    const tg=window.Telegram?.WebApp;if(tg){tg.ready();tg.expand()}const params=new URLSearchParams(location.search),tgUser=tg?.initDataUnsafe?.user;
+    function maskName(v){v=String(v||'TelegramUser').replace(/^@/,'');if(v.length<=3)return '@'+v[0]+'***';return '@'+v.slice(0,2)+'***'+v.slice(-2)}
+    document.getElementById('username').textContent=maskName(params.get('username')||tgUser?.username||tgUser?.first_name);
+    document.getElementById('phone').textContent=params.get('phone')||'Disahkan oleh Bot';let rotation=0,spinning=false;
+    function draw(){const r=canvas.width/2,slice=Math.PI*2/prizes.length;ctx.clearRect(0,0,canvas.width,canvas.height);ctx.save();ctx.translate(r,r);ctx.rotate(rotation);for(let i=0;i<prizes.length;i++){ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,r-10,i*slice,(i+1)*slice);ctx.closePath();ctx.fillStyle=colors[i];ctx.fill();ctx.strokeStyle='#e9bd4c';ctx.lineWidth=4;ctx.stroke();const angle=(i+.5)*slice,x=Math.cos(angle)*r*.62,y=Math.sin(angle)*r*.62;ctx.save();ctx.translate(x,y);ctx.rotate(-rotation);ctx.fillStyle='#fff1bd';ctx.font='900 36px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.shadowColor='#000';ctx.shadowBlur=6;ctx.fillText(prizes[i]+' PT',0,0);ctx.restore()}ctx.restore()}
+    const empty=document.getElementById('empty'),record=document.getElementById('record'),recordPoints=document.getElementById('recordPoints'),recordTime=document.getElementById('recordTime');
+    function showRecord(p,t){empty.style.display='none';record.style.display='block';recordPoints.textContent=p+' Points';recordTime.textContent=t}function celebrate(){for(let i=0;i<42;i++){const e=document.createElement('i');e.className='burst';e.style.left=Math.random()*100+'vw';e.style.background=['#ffd45c','#fff1ae','#b68015'][i%3];e.style.setProperty('--x',(Math.random()*160-80)+'px');e.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3100)}}
+    function finish(p){const now=new Date().toLocaleString('en-MY',{dateStyle:'short',timeStyle:'short'});localStorage.setItem('tony99_draw_done',JSON.stringify({points:p,time:now}));resultTitle.textContent='🎉 Anda Menang '+p+' Points!';result.style.display='block';spin.style.display='none';showRecord(p,now);celebrate();if(tg){try{tg.sendData(JSON.stringify({type:'lucky_draw_result',points:p}))}catch(e){}}}
+    draw();spin.onclick=()=>{if(spinning||localStorage.getItem('tony99_draw_done'))return;spinning=true;spin.disabled=true;const won=Math.floor(Math.random()*prizes.length),slice=Math.PI*2/prizes.length,target=-(won+.5)*slice-Math.PI/2,from=rotation,to=target+Math.PI*2*(8+Math.floor(Math.random()*3)),start=performance.now(),duration=4800;function animate(now){const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,4);rotation=from+(to-from)*ease;draw();p<1?requestAnimationFrame(animate):(spinning=false,finish(prizes[won]))}requestAnimationFrame(animate)};
+    const previous=localStorage.getItem('tony99_draw_done');if(previous){try{const r=JSON.parse(previous);spin.style.display='none';resultTitle.textContent='🎉 Anda Menang '+r.points+' Points!';result.style.display='block';showRecord(r.points,r.time||'Direkodkan')}catch(e){localStorage.removeItem('tony99_draw_done')}}
+  </script></body></html>
