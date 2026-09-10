@@ -34,8 +34,8 @@
         position: relative;
         width: min(100%, 560px);
         min-height: 100svh;
-        padding: max(14px, env(safe-area-inset-top)) 18px
-          max(22px, env(safe-area-inset-bottom));
+        padding: max(18px, env(safe-area-inset-top)) 24px
+          max(28px, env(safe-area-inset-bottom));
         overflow: hidden;
         background:
           linear-gradient(#05030155, #050301b5),
@@ -100,15 +100,16 @@
         }
       }
       .brand {
+        position: relative;
         text-align: center;
-        margin-bottom: 13px;
+        margin-bottom: 18px;
         animation: enter 0.7s both;
       }
       .crown {
         position: relative;
         width: 45px;
         height: 25px;
-        margin: 0 auto -1px;
+        margin: 0 auto 3px;
         background: linear-gradient(100deg, #a86500, #fff2a0 46%, #d38c00);
         clip-path: polygon(0 100%, 0 35%, 24% 68%, 50% 0, 76% 68%, 100% 35%, 100% 100%);
         filter: drop-shadow(0 0 9px #ffc83d);
@@ -122,10 +123,22 @@
         height: 5px;
         background: #ffe377;
       }
+      .brand:before,
+      .brand:after {
+        content: "";
+        position: absolute;
+        top: 35px;
+        width: 25%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ffdc61);
+        box-shadow: 0 0 8px #ffc83d;
+      }
+      .brand:before { left: 6%; }
+      .brand:after { right: 6%; transform: scaleX(-1); }
       .logo {
         display: block;
-        max-width: min(72%, 360px);
-        max-height: 74px;
+        max-width: min(78%, 390px);
+        max-height: 82px;
         object-fit: contain;
         margin: auto;
         filter: drop-shadow(0 0 14px #f4ad25aa);
@@ -135,8 +148,9 @@
         color: #ffe17a;
         font-family: Georgia, serif;
         font-weight: 800;
-        font-size: clamp(14px, 4vw, 19px);
-        letter-spacing: 2px;
+        font-size: clamp(15px, 4.2vw, 21px);
+        letter-spacing: 2.4px;
+        text-shadow: 0 2px 4px #000, 0 0 12px #b57600;
       }
       @keyframes glow {
         50% {
@@ -144,23 +158,19 @@
         }
       }
       .panel {
-        background: linear-gradient(145deg, #080705ed, #1a1307ed);
-        border: 1px solid #c99737;
-        border-radius: 17px;
+        background: linear-gradient(145deg, #050403f5, #171006f5);
+        border: 2px solid #daa937;
+        border-radius: 20px;
         box-shadow:
-          inset 0 0 14px #ffc95020,
+          inset 0 0 0 3px #3b270b,
+          inset 0 0 18px #ffc95022,
           0 8px 28px #000a;
       }
       .identity {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 12px 7px;
-        margin-bottom: 14px;
-        border: 2px solid #d8a735;
-        box-shadow:
-          inset 0 0 0 3px #322008,
-          inset 0 0 18px #ffc95020,
-          0 8px 28px #000a;
+        padding: 14px 8px;
+        margin-bottom: 22px;
         animation: enter 0.8s 0.08s both;
       }
       .field {
@@ -172,11 +182,34 @@
         padding: 0 12px;
       }
       .field-icon {
+        position: relative;
+        display: inline-grid;
+        place-items: center;
+        width: 30px;
+        height: 34px;
         grid-row: 1 / 3;
         color: #ffe080;
-        font-size: 26px;
+        font-size: 30px;
         line-height: 1;
         filter: drop-shadow(0 0 7px #db9a18);
+      }
+      .field-icon.person:before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #fff2a0, #d9950c);
+      }
+      .field-icon.person:after {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        width: 27px;
+        height: 17px;
+        border-radius: 14px 14px 5px 5px;
+        background: linear-gradient(135deg, #fff2a0, #c88000);
       }
       .field + .field {
         border-left: 1px solid #d9ab4f66;
@@ -184,7 +217,7 @@
       .label {
         display: block;
         color: #cfb77b;
-        font-size: clamp(10px, 2.7vw, 12px);
+        font-size: clamp(10px, 2.8vw, 13px);
         font-weight: 800;
         white-space: nowrap;
       }
@@ -192,7 +225,7 @@
         display: block;
         margin-top: 5px;
         color: #fff0b5;
-        font-size: clamp(16px, 4.4vw, 22px);
+        font-size: clamp(17px, 4.7vw, 24px);
         font-weight: 900;
         white-space: nowrap;
         overflow: hidden;
@@ -205,13 +238,25 @@
         align-items: center;
         animation: enter 0.9s 0.14s both;
       }
+      .game:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: min(calc(92vw - 16px), 454px);
+        width: 72%;
+        height: 68px;
+        border-radius: 50% 50% 14px 14px / 55% 55% 28px 28px;
+        background: linear-gradient(90deg, #2c1600, #e5a91d 12%, #3b2003 28%, #130b03 50%, #5d3505 70%, #f2bd36 88%, #2b1600);
+        border: 3px solid #d99c20;
+        box-shadow: inset 0 9px 12px #fff19b33, 0 14px 22px #000d;
+      }
       .pointer {
         position: absolute;
         z-index: 8;
         left: 50%;
-        top: -9px;
-        width: 48px;
-        height: 62px;
+        top: -22px;
+        width: 54px;
+        height: 78px;
         transform: translateX(-50%);
         transform-origin: 50% 8px;
         filter: drop-shadow(0 5px 4px #000);
@@ -221,7 +266,19 @@
         position: absolute;
         inset: 0;
         background: linear-gradient(90deg, #a86600, #fff2a0 45%, #e39c0a);
-        clip-path: polygon(50% 100%, 0 18%, 24% 0, 76% 0, 100% 18%);
+        clip-path: polygon(50% 100%, 7% 31%, 22% 11%, 78% 11%, 93% 31%);
+      }
+      .pointer:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 2px;
+        width: 27px;
+        height: 27px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, #fffbe3 0 33%, #ffd243 36% 55%, #8d5200 59% 100%);
+        box-shadow: 0 0 12px #ffd449;
       }
       .game.spinning .pointer {
         animation: tick 0.12s ease-in-out infinite alternate;
@@ -232,12 +289,10 @@
         }
       }
       .frame {
-        --ring: 23px;
+        --ring: 24px;
         position: relative;
-        width: calc(100vw - 36px);
-        height: calc(100vw - 36px);
-        max-width: 480px;
-        max-height: 480px;
+        width: min(calc(92vw - 20px), 454px);
+        height: min(calc(92vw - 20px), 454px);
         min-width: 0;
         min-height: 0;
         flex: 0 0 auto;
@@ -246,23 +301,26 @@
         padding: var(--ring);
         overflow: hidden;
         background:
-          radial-gradient(circle at 50% 48%, transparent 61%, #fff09c22 62% 64%, transparent 65%),
-          repeating-conic-gradient(#2c1a04 0 3deg, #ffdc62 3deg 5deg, #80510a 5deg 7deg);
+          radial-gradient(circle at 42% 34%, #68420b 0 2%, transparent 24%),
+          linear-gradient(135deg, #1d1104, #f1bd3a 12%, #2b1703 26%, #0a0704 50%, #9d690c 74%, #ffd862 88%, #261500);
         box-shadow:
-          inset 0 0 0 3px #ffdf65,
+          inset 0 0 0 3px #fff1a2,
           inset 0 0 0 8px #281600,
+          inset 0 0 0 12px #dca323,
           0 0 0 3px #2b1802,
           0 0 0 7px #efb72e,
-          0 0 0 10px #2a1700,
           0 16px 30px #000,
           0 0 28px #e9a91c77;
-        animation: pulse 2.4s ease-in-out infinite;
+        animation: pulse 2.8s ease-in-out infinite;
       }
       @keyframes pulse {
         50% {
           box-shadow:
-            0 0 0 5px #2b1802,
-            0 0 0 8px #ffd35a,
+            inset 0 0 0 3px #fff1a2,
+            inset 0 0 0 8px #281600,
+            inset 0 0 0 12px #f0b72f,
+            0 0 0 3px #2b1802,
+            0 0 0 7px #ffd35a,
             0 16px 30px #000,
             0 0 42px #ffc637aa;
         }
@@ -272,14 +330,14 @@
         z-index: 6;
         left: 50%;
         top: 50%;
-        width: 12px;
-        height: 12px;
-        margin: -6px;
+        width: 13px;
+        height: 13px;
+        margin: -6.5px;
         border-radius: 50%;
         background: radial-gradient(circle at 35% 28%, #fff, #ffe271 32%, #d38c04 74%);
         border: 1px solid #5a3600;
-        box-shadow: 0 0 7px #ffc83d;
-        transform: rotate(var(--a)) translateY(calc((min(calc(100vw - 36px), 480px) / -2) + 11px));
+        box-shadow: 0 0 9px #ffc83d;
+        transform: rotate(var(--a)) translateY(calc((min(calc(92vw - 20px), 454px) / -2) + 12px));
         pointer-events: none;
       }
       .wheel {
@@ -291,14 +349,14 @@
         overflow: hidden;
         background: conic-gradient(
           from -30deg,
-          #17120a 0 60deg,
-          #8a5c0b 60deg 120deg,
-          #151515 120deg 180deg,
-          #bd8420 180deg 240deg,
+          #151108 0 60deg,
+          #8d600e 60deg 120deg,
+          #11100d 120deg 180deg,
+          #bc8421 180deg 240deg,
           #17130b 240deg 300deg,
-          #9c6910 300deg
+          #86590d 300deg
         );
-        border: 3px solid #ffd75b;
+        border: 4px solid #eab12d;
         transition: transform 5.2s var(--ease);
         will-change: transform;
       }
@@ -309,9 +367,9 @@
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          transparent 46%,
-          #ffe67818 69%,
-          #0007
+          transparent 38%,
+          #ffe67815 63%,
+          #0008
         );
       }
       .wheel:before {
@@ -332,34 +390,34 @@
         width: 64px;
         text-align: center;
         color: #fff2bd;
-        font-family: Arial, sans-serif;
+        font-family: Georgia, "Times New Roman", serif;
         font-weight: 900;
-        font-size: clamp(18px, 5.2vw, 26px);
+        font-size: clamp(21px, 6vw, 31px);
         text-shadow:
           0 3px 3px #000,
           0 0 8px #ffd556;
         transform: translate(-50%, -50%) rotate(var(--a))
-          translateY(clamp(-148px, -29vw, -92px)) rotate(var(--r));
+          translateY(clamp(-142px, -27.2vw, -88px)) rotate(var(--r));
       }
       .hub {
         position: absolute;
         z-index: 5;
         left: 50%;
         top: 50%;
-        width: 30%;
+        width: 31%;
         aspect-ratio: 1;
         transform: translate(-50%, -50%);
         display: grid;
         place-items: center;
         border-radius: 50%;
         background: radial-gradient(circle at 40% 32%, #30220b, #090704 55%, #000);
-        border: 5px double #ffdc66;
+        border: 6px double #ffdc66;
         box-shadow:
           0 5px 12px #000,
           0 0 18px #ffc938;
         color: #ffd553;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(12px, 3.4vw, 18px);
+        font-size: clamp(12px, 3.6vw, 19px);
         font-weight: 900;
         letter-spacing: -0.3px;
         white-space: nowrap;
@@ -372,20 +430,30 @@
         font-size: 0.72em;
         line-height: 0.8;
       }
+      .hub span:after {
+        content: "❧  ❧";
+        display: block;
+        margin-top: 5px;
+        font-size: 0.72em;
+        letter-spacing: 5px;
+        line-height: 0.7;
+      }
       .spin {
-        width: 92%;
-        height: 58px;
-        margin: 17px 4% 14px;
-        border: 2px solid #fff0a0;
-        border-radius: 17px;
-        background: linear-gradient(#fff3ac, #ffc12f 48%, #d38b08);
+        position: relative;
+        z-index: 2;
+        width: 88%;
+        height: 70px;
+        margin: 32px 6% 19px;
+        border: 3px solid #fff0a0;
+        border-radius: 24px;
+        background: linear-gradient(#fff8ce 0%, #ffd959 27%, #f5a900 72%, #c87e00 100%);
         box-shadow:
           inset 0 2px 3px #fff,
           0 7px 0 #794700,
           0 0 24px #ffbd2e;
         color: #211100;
         font-family: Georgia, serif;
-        font-size: clamp(24px, 7vw, 34px);
+        font-size: clamp(28px, 7.6vw, 39px);
         font-weight: 900;
         cursor: pointer;
         animation: btn 1.8s ease-in-out infinite;
@@ -407,7 +475,7 @@
         }
       }
       .history {
-        padding: 13px 16px 15px;
+        padding: 19px 22px 21px;
         animation: enter 0.85s 0.22s both;
       }
       .history h3 {
@@ -415,7 +483,7 @@
         text-align: center;
         color: #ffe28a;
         font-family: Georgia, serif;
-        font-size: clamp(17px, 4.7vw, 22px);
+        font-size: clamp(19px, 5.2vw, 27px);
       }
       .record {
         display: flex;
@@ -425,7 +493,7 @@
         padding-top: 9px;
         border-top: 1px solid #ae812c55;
         color: #cdbd93;
-        font-size: 14px;
+        font-size: 16px;
       }
       .record strong {
         color: #ffdc65;
@@ -503,29 +571,29 @@
       }
       @media (max-width: 380px) {
         .stage {
-          padding-left: 12px;
-          padding-right: 12px;
+          padding-left: 16px;
+          padding-right: 16px;
         }
         .field {
           padding: 0 8px;
         }
         .frame {
-          --ring: 18px;
-          width: calc(100vw - 24px);
-          height: calc(100vw - 24px);
+          --ring: 19px;
+          width: calc(92vw - 20px);
+          height: calc(92vw - 20px);
         }
         .spin {
-          height: 52px;
+          height: 62px;
         }
         .prize {
-          font-size: 20px;
+          font-size: 21px;
         }
         .field {
           grid-template-columns: 25px minmax(0, 1fr);
           column-gap: 5px;
         }
         .field-icon {
-          font-size: 21px;
+          font-size: 22px;
         }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -548,12 +616,12 @@
       </header>
       <section class="identity panel">
         <div class="field">
-          <span class="field-icon" aria-hidden="true">♟</span>
+          <span class="field-icon person" aria-hidden="true"></span>
           <span class="label">TELEGRAM USERNAME</span
           ><span class="value" id="username">@ja***99</span>
         </div>
         <div class="field">
-          <span class="field-icon" aria-hidden="true">☎</span>
+          <span class="field-icon" aria-hidden="true">☎︎</span>
           <span class="label">PHONE NUMBER</span
           ><span class="value" id="phone">012****789</span>
         </div>
