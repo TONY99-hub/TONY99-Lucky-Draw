@@ -169,47 +169,15 @@
       .identity {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        align-items: center;
         padding: 14px 8px;
         margin-bottom: 22px;
         animation: enter 0.8s 0.08s both;
       }
       .field {
-        display: grid;
-        grid-template-columns: 34px minmax(0, 1fr);
-        column-gap: 8px;
-        align-items: center;
         min-width: 0;
-        padding: 0 12px;
-      }
-      .field-icon {
-        position: relative;
-        display: inline-grid;
-        place-items: center;
-        width: 30px;
-        height: 34px;
-        grid-row: 1 / 3;
-        color: #ffe080;
-        font-size: 30px;
-        line-height: 1;
-        filter: drop-shadow(0 0 7px #db9a18);
-      }
-      .field-icon.person:before {
-        content: "";
-        position: absolute;
-        top: 1px;
-        width: 13px;
-        height: 13px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #fff2a0, #d9950c);
-      }
-      .field-icon.person:after {
-        content: "";
-        position: absolute;
-        bottom: 1px;
-        width: 27px;
-        height: 17px;
-        border-radius: 14px 14px 5px 5px;
-        background: linear-gradient(135deg, #fff2a0, #c88000);
+        padding: 1px 15px;
+        text-align: left;
       }
       .field + .field {
         border-left: 1px solid #d9ab4f66;
@@ -220,6 +188,8 @@
         font-size: clamp(10px, 2.8vw, 13px);
         font-weight: 800;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .value {
         display: block;
@@ -415,28 +385,15 @@
         box-shadow:
           0 5px 12px #000,
           0 0 18px #ffc938;
-        color: #ffd553;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(12px, 3.6vw, 19px);
-        font-weight: 900;
-        letter-spacing: -0.3px;
-        white-space: nowrap;
-        padding: 7px;
-        text-shadow: 0 1px #fff2a0, 0 0 8px #d49411;
+        padding: 13px;
       }
-      .hub span:before {
-        content: "♛";
+      .hub img {
         display: block;
-        font-size: 0.72em;
-        line-height: 0.8;
-      }
-      .hub span:after {
-        content: "❧  ❧";
-        display: block;
-        margin-top: 5px;
-        font-size: 0.72em;
-        letter-spacing: 5px;
-        line-height: 0.7;
+        width: 100%;
+        height: auto;
+        max-height: 54%;
+        object-fit: contain;
+        filter: drop-shadow(0 0 7px #d49411);
       }
       .spin {
         position: relative;
@@ -575,7 +532,7 @@
           padding-right: 16px;
         }
         .field {
-          padding: 0 8px;
+          padding: 0 10px;
         }
         .frame {
           --ring: 19px;
@@ -588,12 +545,102 @@
         .prize {
           font-size: 21px;
         }
-        .field {
-          grid-template-columns: 25px minmax(0, 1fr);
-          column-gap: 5px;
+      }
+      @media (max-width: 600px) {
+        .stage {
+          padding-top: max(8px, env(safe-area-inset-top));
+          padding-bottom: max(12px, env(safe-area-inset-bottom));
         }
-        .field-icon {
-          font-size: 22px;
+        .brand {
+          margin-bottom: 10px;
+        }
+        .crown {
+          width: 35px;
+          height: 19px;
+          margin-bottom: 0;
+        }
+        .brand:before,
+        .brand:after {
+          top: 26px;
+        }
+        .logo {
+          max-height: 58px;
+        }
+        .tag {
+          font-size: clamp(13px, 3.9vw, 17px);
+          line-height: 1.05;
+        }
+        .identity {
+          min-height: 60px;
+          padding-top: 9px;
+          padding-bottom: 9px;
+          margin-bottom: 16px;
+        }
+        .label {
+          font-size: clamp(9px, 2.6vw, 11px);
+        }
+        .value {
+          font-size: clamp(15px, 4.2vw, 20px);
+        }
+        .frame {
+          --ring: 20px;
+          width: min(calc(82vw - 20px), 365px);
+          height: min(calc(82vw - 20px), 365px);
+        }
+        .bulb {
+          transform: rotate(var(--a)) translateY(calc((min(calc(82vw - 20px), 365px) / -2) + 11px));
+        }
+        .game:after {
+          top: min(calc(82vw - 7px), 378px);
+          height: 52px;
+        }
+        .pointer {
+          width: 46px;
+          height: 66px;
+          top: -19px;
+        }
+        .pointer:after {
+          width: 23px;
+          height: 23px;
+        }
+        .prize {
+          font-size: clamp(19px, 5.7vw, 26px);
+          transform: translate(-50%, -50%) rotate(var(--a))
+            translateY(clamp(-112px, -23.5vw, -77px)) rotate(var(--r));
+        }
+        .spin {
+          height: 56px;
+          margin-top: 27px;
+          margin-bottom: 12px;
+          font-size: clamp(25px, 7vw, 32px);
+          border-radius: 19px;
+        }
+        .history {
+          padding: 13px 18px 15px;
+        }
+        .history h3 {
+          margin-bottom: 7px;
+          font-size: clamp(18px, 5vw, 23px);
+        }
+        .record {
+          padding-top: 7px;
+          font-size: 14px;
+        }
+      }
+      @media (max-height: 720px) and (max-width: 600px) {
+        .frame {
+          width: min(68vw, 310px);
+          height: min(68vw, 310px);
+        }
+        .bulb {
+          transform: rotate(var(--a)) translateY(calc((min(68vw, 310px) / -2) + 10px));
+        }
+        .game:after {
+          top: min(calc(68vw + 13px), 323px);
+        }
+        .prize {
+          transform: translate(-50%, -50%) rotate(var(--a))
+            translateY(clamp(-93px, -19vw, -66px)) rotate(var(--r));
         }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -616,12 +663,10 @@
       </header>
       <section class="identity panel">
         <div class="field">
-          <span class="field-icon person" aria-hidden="true"></span>
           <span class="label">TELEGRAM USERNAME</span
           ><span class="value" id="username">@ja***99</span>
         </div>
         <div class="field">
-          <span class="field-icon" aria-hidden="true">☎︎</span>
           <span class="label">PHONE NUMBER</span
           ><span class="value" id="phone">012****789</span>
         </div>
@@ -642,8 +687,8 @@
             ><span class="prize" style="--a: 180deg; --r: -180deg">$5</span
             ><span class="prize" style="--a: 240deg; --r: -240deg">$8</span
             ><span class="prize" style="--a: 300deg; --r: -300deg">$10</span>
-            <div class="hub"><span>TONY99</span></div>
           </div>
+          <div class="hub"><img src="tony99-logo.png" alt="TONY99" /></div>
         </div>
         <button class="spin" id="spin">SPIN NOW</button>
       </section>
