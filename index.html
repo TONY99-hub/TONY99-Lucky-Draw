@@ -726,16 +726,12 @@
         tg.expand();
       }
       returnToBot.addEventListener("click", (event) => {
-        if (!tg?.initData) return;
+        if (typeof tg?.openTelegramLink !== "function") return;
         event.preventDefault();
-        try {
-          tg.openTelegramLink(
-            "https://t.me/TONY99LuckyDrawBot?start=game_return",
-          );
-        } catch (e) {
-          location.href =
-            "tg://resolve?domain=TONY99LuckyDrawBot&start=game_return";
-        }
+        tg.openTelegramLink(
+          "https://t.me/TONY99LuckyDrawBot?start=game_return",
+        );
+        setTimeout(() => tg.close(), 200);
       });
       const q = new URLSearchParams(location.search),
         u = tg?.initDataUnsafe?.user;
