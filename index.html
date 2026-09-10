@@ -806,14 +806,23 @@
           type: "lucky_draw_result",
           points: +saved.points,
         });
+        const botUrl = "https://t.me/TONY99LuckyDrawBot?start=game_return";
+        returnToBot.disabled = true;
         if (tg?.initData) {
           try {
             tg.sendData(payload);
-            setTimeout(() => tg.close(), 180);
+            setTimeout(() => {
+              try {
+                tg.openTelegramLink(botUrl);
+              } catch (e) {
+                location.href = botUrl;
+              }
+              setTimeout(() => tg.close(), 250);
+            }, 250);
             return;
           } catch (e) {}
         }
-        location.href = "https://t.me/TONY99LuckyDrawBot";
+        location.href = botUrl;
       };
       spin.onclick = () => {
         if (running || localStorage.getItem(storageKey)) return;
