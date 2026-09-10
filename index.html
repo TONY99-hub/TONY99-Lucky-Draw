@@ -705,7 +705,7 @@
           Your prize has been recorded. Return to the Telegram Bot to
           continue.
         </p>
-        <a class="return" href="https://t.me/TONY99LuckyDrawBot"
+        <a class="return" id="returnToBot" href="tg://resolve?domain=TONY99LuckyDrawBot&amp;start=game_return"
           >✅ RETURN TO BOT</a
         >
       </section>
@@ -719,11 +719,24 @@
         title = document.querySelector("#resultTitle"),
         rp = document.querySelector("#recordPoints"),
         rt = document.querySelector("#recordTime"),
+        returnToBot = document.querySelector("#returnToBot"),
         tg = window.Telegram?.WebApp;
       if (tg) {
         tg.ready();
         tg.expand();
       }
+      returnToBot.addEventListener("click", (event) => {
+        if (!tg?.initData) return;
+        event.preventDefault();
+        try {
+          tg.openTelegramLink(
+            "https://t.me/TONY99LuckyDrawBot?start=game_return",
+          );
+        } catch (e) {
+          location.href =
+            "tg://resolve?domain=TONY99LuckyDrawBot&start=game_return";
+        }
+      });
       const q = new URLSearchParams(location.search),
         u = tg?.initDataUnsafe?.user;
       function maskName(v) {
