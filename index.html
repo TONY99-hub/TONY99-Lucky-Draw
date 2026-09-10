@@ -265,24 +265,24 @@
         z-index: 2;
         left: 50%;
         top: 50%;
-        width: 88px;
+        width: 64px;
         text-align: center;
         color: #fff2bd;
-        font-family: Georgia, serif;
+        font-family: Arial, sans-serif;
         font-weight: 900;
-        font-size: clamp(21px, 6vw, 31px);
+        font-size: clamp(18px, 5.2vw, 26px);
         text-shadow:
           0 3px 3px #000,
           0 0 8px #ffd556;
         transform: translate(-50%, -50%) rotate(var(--a))
-          translateY(clamp(-185px, -36vw, -118px)) rotate(var(--r));
+          translateY(clamp(-148px, -29vw, -92px)) rotate(var(--r));
       }
       .hub {
         position: absolute;
         z-index: 5;
         left: 50%;
         top: 50%;
-        width: 27%;
+        width: 30%;
         aspect-ratio: 1;
         transform: translate(-50%, -50%);
         display: grid;
@@ -299,9 +299,12 @@
           0 5px 12px #000,
           0 0 18px #ffc938;
         color: #160d01;
-        font-family: Georgia, serif;
-        font-size: clamp(15px, 4.5vw, 23px);
+        font-family: "Arial Black", Arial, sans-serif;
+        font-size: clamp(13px, 3.6vw, 19px);
         font-weight: 900;
+        letter-spacing: -0.5px;
+        white-space: nowrap;
+        padding: 8px;
       }
       .spin {
         width: 92%;
@@ -483,12 +486,12 @@
         <div class="pointer"></div>
         <div class="frame">
           <div class="wheel" id="wheel">
-            <span class="prize" style="--a: 0deg; --r: 0deg">1 PT</span
-            ><span class="prize" style="--a: 60deg; --r: -60deg">2 PT</span
-            ><span class="prize" style="--a: 120deg; --r: -120deg">3 PT</span
-            ><span class="prize" style="--a: 180deg; --r: -180deg">5 PT</span
-            ><span class="prize" style="--a: 240deg; --r: -240deg">8 PT</span
-            ><span class="prize" style="--a: 300deg; --r: -300deg">10 PT</span>
+            <span class="prize" style="--a: 0deg; --r: 0deg">$1</span
+            ><span class="prize" style="--a: 60deg; --r: -60deg">$2</span
+            ><span class="prize" style="--a: 120deg; --r: -120deg">$3</span
+            ><span class="prize" style="--a: 180deg; --r: -180deg">$5</span
+            ><span class="prize" style="--a: 240deg; --r: -240deg">$8</span
+            ><span class="prize" style="--a: 300deg; --r: -300deg">$10</span>
             <div class="hub">TONY99</div>
           </div>
         </div>
@@ -504,7 +507,7 @@
       <section class="result" id="result">
         <h2 id="resultTitle"></h2>
         <p>
-          Your points have been recorded. Return to the Telegram Bot to
+          Your prize has been recorded. Return to the Telegram Bot to
           continue.
         </p>
         <a class="return" href="https://t.me/TONY99LuckyDrawBot"
@@ -572,9 +575,9 @@
         }
       }
       function show(p, t) {
-        rp.textContent = p + " Points";
+        rp.textContent = "$" + p;
         rt.textContent = t;
-        title.textContent = "YOU WON " + p + " POINTS!";
+        title.textContent = "YOU WON $" + p + "!";
         result.classList.add("show");
         spin.hidden = true;
       }
