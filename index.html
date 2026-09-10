@@ -488,14 +488,18 @@
       }
       .return {
         display: block;
+        width: 100%;
         margin-top: 18px;
         padding: 15px;
+        border: 0;
         border-radius: 14px;
         background: linear-gradient(#fff0a0, #d99e20);
         color: #231400;
+        font-family: Arial, sans-serif;
         text-decoration: none;
         font-weight: 900;
         font-size: 18px;
+        cursor: pointer;
       }
       .confetti {
         position: fixed;
@@ -705,9 +709,9 @@
           Your prize has been recorded. Return to the Telegram Bot to
           continue.
         </p>
-        <a class="return" href="https://t.me/TONY99LuckyDrawBot"
-          >✅ RETURN TO BOT</a
-        >
+        <button class="return" id="returnToBot" type="button">
+          ✅ RETURN TO BOT
+        </button>
       </section>
     </main>
     <script>
@@ -719,6 +723,7 @@
         title = document.querySelector("#resultTitle"),
         rp = document.querySelector("#recordPoints"),
         rt = document.querySelector("#recordTime"),
+        returnToBot = document.querySelector("#returnToBot"),
         tg = window.Telegram?.WebApp;
       if (tg) {
         tg.ready();
@@ -726,6 +731,8 @@
       }
       const q = new URLSearchParams(location.search),
         u = tg?.initDataUnsafe?.user;
+      const playSession = q.get("play") || "legacy",
+        storageKey = "tony99_draw_done_" + playSession;
       function maskName(v) {
         v = String(v || "TelegramUser").replace(/^@/, "");
         return (
@@ -782,20 +789,34 @@
           timeStyle: "short",
         });
         localStorage.setItem(
-          "tony99_draw_done",
+          storageKey,
           JSON.stringify({ version: 3, points: p, time: t }),
         );
         game.classList.remove("spinning");
         show(p, t);
         confetti();
-        try {
-          tg?.sendData(
-            JSON.stringify({ type: "lucky_draw_result", points: p }),
-          );
-        } catch (e) {}
       }
+      returnToBot.onclick = () => {
+        let saved;
+        try {
+          saved = JSON.parse(localStorage.getItem(storageKey) || "");
+        } catch (e) {}
+        if (!saved || !prizes.includes(+saved.points)) return;
+        const payload = JSON.stringify({
+          type: "lucky_draw_result",
+          points: +saved.points,
+        });
+        if (tg?.initData) {
+          try {
+            tg.sendData(payload);
+            setTimeout(() => tg.close(), 180);
+            return;
+          } catch (e) {}
+        }
+        location.href = "https://t.me/TONY99LuckyDrawBot";
+      };
       spin.onclick = () => {
-        if (running || localStorage.getItem("tony99_draw_done")) return;
+        if (running || localStorage.getItem(storageKey)) return;
         running = true;
         spin.disabled = true;
         game.classList.add("spinning");
@@ -807,14 +828,14 @@
           finish(prizes[win]);
         }, 5350);
       };
-      let old = localStorage.getItem("tony99_draw_done");
+      let old = localStorage.getItem(storageKey);
       if (old)
         try {
           let v = JSON.parse(old);
           if (v.version !== 3 || !prizes.includes(+v.points)) throw 0;
           show(+v.points, v.time || "Recorded");
         } catch (e) {
-          localStorage.removeItem("tony99_draw_done");
+          localStorage.removeItem(storageKey);
         }
     </script>
   </body>
